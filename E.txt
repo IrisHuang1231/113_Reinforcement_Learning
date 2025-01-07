@@ -2,4 +2,5 @@ Just two of the 181 people on board the plane survived,
 after the deaths of 179 people were confirmed, 
 according to the local fire department. 
 The two crew members were pulled alive from the crash site.
-https://github.com/IrisHuang1231/113_Reinforcement_Learning/blob/main/images/unnamed.jpg
+![測試](https://github.com/IrisHuang1231/113_Reinforcement_Learning/blob/main/images/unnamed.jpg)
+
