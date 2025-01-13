@@ -1,7 +1,7 @@
 # 113 強化學習
 ## 目錄
 1. [基礎知識](#基礎知識)
-2. [內文](#內文)
+2. [演算法於資產配置比較](#演算法於資產配置比較)
 3. [圖片](#圖片)
 4. [連結](#連結)
    
@@ -128,45 +128,36 @@ Model-Free v.s Model-Based → Policy-based RL v.s Value-based
 			* 從重播記憶體中隨機抽取小批量的經驗樣本。
 			* 使用目標網路計算目標 Q 值：<img src="image/*012.png" alt="測試" width="25%">
    			* 使用主網絡預測當前 Q 值 Q(s,a)。
-			* 最小化損失：通過梯度下降法，將 Q 值預測誤差 <img src="image/*013.png" alt="測試" width="50%">作為損失函數來更新主網絡的參數。
+			* 最小化損失：通過梯度下降法，將 Q 值預測誤差 <img src="image/*013.png" alt="測試" width="15%">作為損失函數來更新主網絡的參數。
 		5. 更新目標網路：每隔一段時間，將主網絡的參數複製到目標網路中，從而保持目標 Q 值的一致性。
 	* DDQN 的核心創新在於分離行為選擇和價值評估
 		* 解決 DQN 過度高估的 Q 值，導致代理在更新策略時做出次優的行為選擇，從而影響收斂速度。
     		* 核心創新在於分離行為選擇和價值評估
-		* 目標網路計算目標 Q 值公式改為：<img src="image/*014.png" alt="測試" width="25%">
+		* 目標網路計算目標 Q 值公式改為：<img src="image/*014.png" alt="測試" width="60%">
 	* 結果比較：顯示儘管訓練開始時的動態相似，但雙 DQN 更快地達到了收斂。
 <img src="image/*015.png" alt="測試" width="70%">
 同時，帶有數值的圖表顯示， DQN 在大多數情況下都會高估動作的值。
 <img src="image/*016.png" alt="測試" width="70%">
 
-
-
-
-總表
-https://huangwang.github.io/2020/02/10/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6%E6%96%B9%E6%B3%95%E7%AC%94%E8%AE%B0/
-Value-based RL和Policy-based RL介绍和区别
-https://blog.csdn.net/civiljiao/article/details/136042836?spm=1001.2101.3001.6650.4&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-4-136042836-blog-103371525.235%5Ev43%5Epc_blog_bottom_relevance_base8&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-4-136042836-blog-103371525.235%5Ev43%5Epc_blog_bottom_relevance_base8&utm_relevant_index=9
-無模型（Model-Free）與有模型（Model-Based）強化學習：原理、差異與應用
+* 網路資料
+  https://huangwang.github.io/2020/02/10/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6%E6%96%B9%E6%B3%95%E7%AC%94%E8%AE%B0/
+  https://huangwang.github.io/2020/02/10/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6%E6%96%B9%E6%B3%95%E7%AC%94%E8%AE%B0/
+    https://blog.csdn.net/civiljiao/article/details/136042836spm=1001.2101.3001.6650.4&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-4-136042836-blog-103371525.235%5Ev43%5Epc_blog_bottom_relevance_base8&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-4-136042836-blog-103371525.235%5Ev43%5Epc_blog_bottom_relevance_base8&utm_relevant_index=9
 https://blog.csdn.net/weixin_37410657/article/details/130484679
 https://hackmd.io/@shaoeChen/Bywb8YLKS/https%3A%2F%2Fhackmd.io%2F%40shaoeChen%2FSyez2AmFr
-Q-learning
 https://hackmd.io/@shaoeChen/Bywb8YLKS/https%3A%2F%2Fhackmd.io%2F%40shaoeChen%2FSyqVopoYr
 
-Deep Reinforcement Learning Hands-On: Apply Modern RL Methods, with Deep Q-networks, Value Iteration, Policy Gradients, TRPO, AlphaGo Zero and More(CH6、7)——Maxim Lapan
+* 書籍
 
 Deep Reinforcement Learning Hands-On: Apply Modern RL Methods, with Deep Q-networks, Value Iteration, Policy Gradients, TRPO, AlphaGo Zero and More(CH6、7)——Maxim Lapan
-演算法於資產配置比較
-背景知識
-9/15(程式碼)
 
-*1
+## 演算法於資產配置比較
+### 背景知識
+
+![測試](image/*1.png)
 1. 基於模型的強化學習 (Model Based RL)
-(a) 策略迭代演算法 (Policy­Iteration)
-尋找最佳策略時迭代更新策略的過程，在有限的馬可夫框架 (FiniteMDP) 下，只有有限數量的策略 (Policy)，故可在有限時間內找到最佳策略和最佳值函數 (Value Function)。
-
-(b) 價值迭代演算法 (Value­Iteration)
-可視為策略迭代演算法 (Policy­Iteration) 的簡化演算法，迭代過程中僅對值函數進行迭代更新，因找到最佳值函數等同找到最佳策略，演算法最後收斂的結果應相當於策略迭代演算法。
-
+   1. 策略迭代演算法 (Policy­Iteration)：尋找最佳策略時迭代更新策略的過程，在有限的馬可夫框架 (FiniteMDP) 下，只有有限數量的策略 (Policy)，故可在有限時間內找到最佳策略和最佳值函數 (Value Function)。
+   2. 價值迭代演算法 (Value­Iteration)：可視為策略迭代演算法 (Policy­Iteration) 的簡化演算法，迭代過程中僅對值函數進行迭代更新，因找到最佳值函數等同找到最佳策略，演算法最後收斂的結果應相當於策略迭代演算法。
 2. 無模型強化學習 (Model Free RL)
 不對環境進行建模進而找到最優的策略，即環境的機率分布為未知下 (無母數) 進行決策。
 	(a) 價值基礎之強化學習(Value­Based RL)
